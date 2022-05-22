@@ -15,4 +15,5 @@ input_method = HiddenInputField
 title = DEATH IS ONLY THE BEGINNING!
 publisher = DevForFun
 developer = DevForFun
+dependencies#0 = https://github.com/britzl/platypus/archive/master.zip
 
