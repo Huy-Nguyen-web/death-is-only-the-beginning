@@ -31,20 +31,18 @@ function update(self, dt)
 	self.platypus.update(dt)
 	-- Add jump buffering
 	if jump_buff then
-		print(jump_buff_time)
 		jump_buff_time = jump_buff_time - dt
-	end
-	if  then
-		print("on ground")
-		if jump_buff_time > 0 then
-			self.platypus.jump(250)
-			-- reset the timer
-			jump_buff = false
-			jump_buff_time = 0.5
-		else
-			-- reset the timer
-			jump_buff = false
-			jump_buff_time = 0.5
+		if self.platypus.has_ground_contact() then
+			if jump_buff_time > 0 then
+				self.platypus.jump(250)
+				-- reset the timer
+				jump_buff = false
+				jump_buff_time = 0.5
+			else
+				-- reset the timer
+				jump_buff = false
+				jump_buff_time = 0.5
+			end
 		end
 	end
 end
@@ -63,8 +61,8 @@ function on_input(self, action_id, action)
 		if action.pressed then
 			-- self.platypus.jump(250)
 			jump_buff = true
-		-- elseif action.released then
-		-- 	self.platypus.abort_jump(0.5)
+		elseif action.released then
+			self.platypus.abort_jump(0.5)
 		end
 	end
 end
