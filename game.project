@@ -23,3 +23,6 @@ dependencies#1 = https://github.com/rgrams/rendercam/archive/v1.0.1.zip
 default_texture_min_filter = nearest
 default_texture_mag_filter = nearest
 
+[physics]
+debug = 0
+

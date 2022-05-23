@@ -10,7 +10,13 @@ convex_hulls {
   count: 4
   collision_group: "floor"
 }
+convex_hulls {
+  index: 4
+  count: 4
+  collision_group: "obstacle"
+}
 collision_groups: "floor"
+collision_groups: "obstacle"
 extrude_borders: 2
 inner_padding: 0
 sprite_trim_mode: SPRITE_TRIM_MODE_OFF
