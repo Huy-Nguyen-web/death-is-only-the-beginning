@@ -65,12 +65,12 @@ function update(self, dt)
 	if obstacle_detect then
 		--spawn the corpse
 		factory.create("/corpse_factory#factory", go.get_position())
-		
+
 		-- reset the player position and spawn the corpse
 		go.set_position(start_pos)
 		self.lives_count = self.lives_count - 1
 		print(self.lives_count)
-		
+
 	end
 end
 
