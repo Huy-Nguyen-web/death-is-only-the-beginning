@@ -18,7 +18,7 @@ function init(self)
 		collisions = {
 			groups = {
 				[hash("floor")] = platypus.DIR_ALL,
-				[hash("obstacle")] = platypus.DIR_ALL,
+				-- [hash("obstacle")] = platypus.DIR_ALL,
 				[hash("corpse")] = platypus.DIR_ALL
 			},
 			left = 4,
@@ -59,13 +59,14 @@ function update(self, dt)
 
 	-- raycasting for obstacle
 	local from = go.get_position()
-	local to = vmath.vector3(from.x, from.y - 8, from.z)
+	local to = vmath.vector3(from.x, from.y - 6, from.z)
 	local obstacle_detect = physics.raycast(from, to, {hash("obstacle")})
 	draw_line(from, to)
 	if obstacle_detect then
-		--spawn the corpse
-		factory.create("/corpse_factory#factory", go.get_position())
-
+		if self.lives_count > 0 then
+			--spawn the corpse
+			factory.create("/corpse_factory#factory", vmath.vector3(from.x, from.y + 2, from.z))
+		end
 		-- reset the player position and spawn the corpse
 		go.set_position(start_pos)
 		self.lives_count = self.lives_count - 1
@@ -76,9 +77,9 @@ end
 
 function on_message(self, message_id, message, sender)
 	self.platypus.on_message(message_id, message)
-	if message_id == hash("contact_point_response") then
-		if message.group == hash("door") then
-			print("on door")
+	if message_id == hash("trigger_response") then
+		if message.enter and message.other_id == hash("/door") then
+			print("fininsh level, next level")
 		end
 	end
 end
@@ -97,3 +98,4 @@ function on_input(self, action_id, action)
 		end
 	end
 end
+
