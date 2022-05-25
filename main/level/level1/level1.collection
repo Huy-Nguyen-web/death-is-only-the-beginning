@@ -1,24 +1,4 @@
-name: "main"
-instances {
-  id: "player"
-  prototype: "/main/object/player.go"
-  position {
-    x: 70.0
-    y: 102.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
+name: "level1"
 instances {
   id: "camera"
   prototype: "/rendercam/camera.go"
@@ -82,39 +62,34 @@ instances {
     z: 1.0
   }
 }
+instances {
+  id: "player"
+  prototype: "/main/object/player.go"
+  position {
+    x: 70.0
+    y: 102.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
-  id: "floor"
-  data: "components {\n"
-  "  id: \"level1\"\n"
-  "  component: \"/main/level/level1/level1.tilemap\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"floor\"\n"
-  "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"/main/level/level1/level1.tilemap\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
-  "mass: 0.0\\n"
-  "friction: 0.1\\n"
-  "restitution: 0.5\\n"
-  "group: \\\"floor\\\"\\n"
-  "mask: \\\"player\\\"\\n"
-  "mask: \\\"corpse\\\"\\n"
-  "linear_damping: 0.0\\n"
-  "angular_damping: 0.0\\n"
-  "locked_rotation: false\\n"
-  "bullet: false\\n"
+  id: "corpse_factory"
+  data: "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/object/corpse.go\\\"\\n"
+  "load_dynamically: false\\n"
   "\"\n"
   "  position {\n"
   "    x: 0.0\n"
@@ -147,12 +122,37 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "corpse_factory"
-  data: "embedded_components {\n"
-  "  id: \"factory\"\n"
-  "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/object/corpse.go\\\"\\n"
-  "load_dynamically: false\\n"
+  id: "floor"
+  data: "components {\n"
+  "  id: \"level1\"\n"
+  "  component: \"/main/level/level1/level1.tilemap\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"floor\"\n"
+  "  type: \"collisionobject\"\n"
+  "  data: \"collision_shape: \\\"/main/level/level1/level1.tilemap\\\"\\n"
+  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "mass: 0.0\\n"
+  "friction: 0.1\\n"
+  "restitution: 0.5\\n"
+  "group: \\\"floor\\\"\\n"
+  "mask: \\\"player\\\"\\n"
+  "mask: \\\"corpse\\\"\\n"
+  "linear_damping: 0.0\\n"
+  "angular_damping: 0.0\\n"
+  "locked_rotation: false\\n"
+  "bullet: false\\n"
   "\"\n"
   "  position {\n"
   "    x: 0.0\n"

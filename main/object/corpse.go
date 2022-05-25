@@ -25,7 +25,7 @@ embedded_components {
   "type: COLLISION_OBJECT_TYPE_DYNAMIC\n"
   "mass: 1.0\n"
   "friction: 0.1\n"
-  "restitution: 0.5\n"
+  "restitution: 0.0\n"
   "group: \"corpse\"\n"
   "mask: \"floor\"\n"
   "mask: \"player\"\n"
@@ -52,7 +52,7 @@ embedded_components {
   "}\n"
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"
-  "locked_rotation: false\n"
+  "locked_rotation: true\n"
   "bullet: false\n"
   ""
   position {
