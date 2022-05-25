@@ -58,14 +58,19 @@ function update(self, dt)
 	end
 
 	-- raycasting for obstacle
-	local from = go.get_position()
-	local to = vmath.vector3(from.x, from.y - 6, from.z)
-	local obstacle_detect = physics.raycast(from, to, {hash("obstacle")})
-	draw_line(from, to)
-	if obstacle_detect then
+	local position = go.get_position()
+	local obstacle_detect = {
+		physics.raycast(position, vmath.vector3(position.x, position.y - 6, position.z), {hash("obstacle")}), -- raycast down
+		physics.raycast(position, vmath.vector3(position.x - 6, position.y, position.z), {hash("obstacle")}), -- raycast left
+		physics.raycast(position, vmath.vector3(position.x, position.y + 6, position.z), {hash("obstacle")}), -- raycast up
+		physics.raycast(position, vmath.vector3(position.x + 6, position.y - 6, position.z), {hash("obstacle")}), -- raycast right
+	}
+	
+	if next(obstacle_detect) ~= nil then
+	
 		if self.lives_count > 0 then
 			--spawn the corpse
-			factory.create("/corpse_factory#factory", vmath.vector3(from.x, from.y + 2, from.z))
+			factory.create("/corpse_factory#factory", vmath.vector3(position.x, position.y + 2, position.z))
 		end
 		-- reset the player position and spawn the corpse
 		go.set_position(start_pos)
