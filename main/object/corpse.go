@@ -29,7 +29,6 @@ embedded_components {
   "group: \"corpse\"\n"
   "mask: \"floor\"\n"
   "mask: \"player\"\n"
-  "mask: \"corpse\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
